@@ -22,4 +22,10 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+  .whiteBord{
+    border: 2px solid white;
+  }
+  .grayBord{
+    border: 2px solid gray;
+  }
 }
