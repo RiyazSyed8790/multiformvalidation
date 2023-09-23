@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import Page1 from './Components/Page1';
+import Page2 from './Components/Page2';
 function App() {
   const [formdata,setData] = React.useState([{
     name:"",
@@ -11,6 +12,7 @@ function App() {
     addOns:[1,2,3]
   }]);
   const [miss,setMiss] = React.useState([]);
+  const [act,setAct] = React.useState(1);
   function formHandler(e){
     const {name,value} = e.target;
         setData((prev)=>{
@@ -41,11 +43,19 @@ function App() {
         alert("Invalid number!");
       }
       else{
-        alert("Next page cums");
+        setMiss([0]);
+        setAct(prev=>prev+1);
       }
       return each;
     }) 
   }
+  function goBack(){
+    setAct(prev=>prev-1);
+  }
+  const arr = [
+    <Page1 click={validator} miss={miss} change={formHandler} name_val={formdata[0].name} email_val={formdata[0].email} phone_val={formdata[0].phone} />,
+    <Page2 back={goBack} click={validator} />
+  ]
   return (
     <main className="App bg-[#EEF5FF] ubu w-screen h-screen flex justify-center md:items-center">
       <section className=' bg-[#EEF5FF] md:bg-white rounded-xl flex justify-center items-end md:items-start flex-wrap md:flex-nowrap md:w-2/3 w-full h-full md:h-2/3'>
@@ -84,7 +94,8 @@ function App() {
             </li>
           </ul>
         </nav>
-        <Page1 click={validator} miss={miss} change={formHandler} name_val={formdata[0].name} email_val={formdata[0].email} phone_val={formdata[0].phone} />
+        {/* <Page1 click={validator} miss={miss} change={formHandler} name_val={formdata[0].name} email_val={formdata[0].email} phone_val={formdata[0].phone} /> */}
+        {arr[act-1]}
       </section>
     </main>
   );
