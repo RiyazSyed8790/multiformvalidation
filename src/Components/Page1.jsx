@@ -1,8 +1,8 @@
 import React from "react";
 export default function Page1(props){
     return(
-        <section className='rounded-xl px-4 py-4 md:px-0 md:py-0 flex justify-center text-left info w-11/12 md:w-4/5 h-4/5 md:h-full z-10 bg-white'>
-          <div className='flex flex-col justify-between h-full md:justify-evenly '>
+        <section className='rounded-xl px-4 py-0 md:px-0 md:py-0 flex justify-center text-left info w-11/12 md:w-4/5 h-4/5 md:h-full z-10 bg-white'>
+          <div className='flex flex-col justify-evenly h-full md:justify-evenly '>
             <div>
             <h2 className='tracking-wide text-[#012257] font-semibold text-3xl '>Personal Info</h2>
             <h3 className=' text-gray-500 text-base'>Please provide your name, email address, and phone number. </h3>
