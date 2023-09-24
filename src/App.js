@@ -11,13 +11,27 @@ function App() {
     phone:"",
     tier:1,
     fiscal:1,
-    addOns:[1,2,3]
+    addOns:[]
   }]);
   const [miss,setMiss] = React.useState([]);
   const [act,setAct] = React.useState(1);
+  const [hidden,setHidden] = React.useState(1);
+  function toggler(e){
+    setHidden(e);
+  }
   function formHandler(e){
-    const {name,value} = e.target;
-        setData((prev)=>{
+    const {name,value,type,checked} = e.target;
+    //console.log(name,"value-",value);
+        // setData((prev)=>{
+        //  return prev.map((each)=>{
+        //     return {
+        //       ...each,
+        //       [name]:value
+        //     }
+        //   })
+        // })
+        if(type!=="checkbox"){
+          setData((prev)=>{
          return prev.map((each)=>{
             return {
               ...each,
@@ -25,6 +39,26 @@ function App() {
             }
           })
         })
+        }
+        else{
+          setData((prev)=>{
+            return prev.map((each)=>{
+              if(!prev[0].addOns.includes(value) && checked){
+                prev[0].addOns.push(value);
+              }
+              if(!checked){
+                //console.log("Im runon")
+                let index = prev[0].addOns.indexOf(value);
+                prev[0].addOns.splice(index,1);
+              }
+              //console.log(prev[0].addOns)
+              return {
+                ...each,
+                [name]: prev[0].addOns
+              }
+            })
+          })
+        }
       
   }
   function tierHandler(e){
@@ -38,21 +72,21 @@ function App() {
       })
     
   }
-  console.log(act);
+
   function validator(){
     formdata.map((each)=>{
       let splicer = each.email.split("");
-      if(each.name.trim()==="")
+      if(each.name.trim()==="" && act===1)
       {setMiss([1]);}
-      else if(each.email==="")
+      else if(each.email==="" && act===1)
       {setMiss([2]);}
-      else if(each.phone==="")
+      else if(each.phone==="" && act===1)
       {setMiss([3]);}
-      else if(!splicer.includes("@")){
+      else if(!splicer.includes("@") && act===1){
         setMiss([0]);
         alert("Invalid email!")
       }
-      else if(isNaN(each.phone)){
+      else if(isNaN(each.phone && act===1)){
         setMiss([0]);
         alert("Invalid number!");
       }
@@ -71,8 +105,8 @@ function App() {
   }
   const arr = [
     <Page1 click={validator} miss={miss} change={formHandler} name_val={formdata[0].name} email_val={formdata[0].email} phone_val={formdata[0].phone} />,
-    <Page2 back={goBack} click={validator} tier={tierHandler} active={formdata[0].tier} />,
-    <Page3 back={goBack} click={validator} />
+    <Page2 back={goBack} click={validator} tier={tierHandler} hider={toggler} hide={hidden} active={formdata[0].tier} />,
+    <Page3 back={goBack} click={validator} change={formHandler} isCheck={formdata[0].addOns} format={hidden} />
   ]
   return (
     <main className="App bg-[#EEF5FF] ubu w-screen h-screen flex justify-center md:items-center">
