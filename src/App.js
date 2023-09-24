@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import Page1 from './Components/Page1';
 import Page2 from './Components/Page2';
+import Page3 from './Components/Page3';
 import Navbar from './Components/Navbar';
 function App() {
   const [formdata,setData] = React.useState([{
@@ -70,7 +71,8 @@ function App() {
   }
   const arr = [
     <Page1 click={validator} miss={miss} change={formHandler} name_val={formdata[0].name} email_val={formdata[0].email} phone_val={formdata[0].phone} />,
-    <Page2 back={goBack} click={validator} tier={tierHandler} active={formdata[0].tier} />
+    <Page2 back={goBack} click={validator} tier={tierHandler} active={formdata[0].tier} />,
+    <Page3 back={goBack} click={validator} />
   ]
   return (
     <main className="App bg-[#EEF5FF] ubu w-screen h-screen flex justify-center md:items-center">
