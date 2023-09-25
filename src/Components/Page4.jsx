@@ -48,12 +48,12 @@ export default function Page4(props){
                 <div className="item bg-[#F8F9FE] flex items-center justify-between">
                     <div>
                     <h2 className=" text-[#012257] font-semibold text-base">{props.dat.tier}({props.moyr===1?"Yearly":"Monthly"})</h2>
-                    <h3 className=' text-gray-500 text-sm underline'>Change</h3>
+                    <h3 onClick={props.goBack} className=' text-gray-500 text-sm underline cursor-pointer'>Change</h3>
                     </div>
                     <h3 className=' text-[#012257] font-semibold text-sm'>+${props.moyr===2?props.tiers[props.active_tier].mo:props.tiers[props.active_tier].yr}/{props.moyr===2?"mo":"yr"}</h3>
                 </div>
                 <div className="inline-flex bg-[#F8F9FE] relative items-center justify-center w-full">
-                     <hr className="w-64 h-px my-8 bg-gray-500 border-0 dark:bg-gray-700"/>
+                     <hr className="w-64 h-px my-3 bg-gray-500 border-0 dark:bg-gray-700"/>
                      <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">Add-ons</span>
                 </div>
                 <div className=" addOns flex w- full bg-[#F8F9FE] justify-between ">

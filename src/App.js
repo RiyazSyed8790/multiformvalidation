@@ -5,6 +5,7 @@ import Page2 from './Components/Page2';
 import Page3 from './Components/Page3';
 import Navbar from './Components/Navbar';
 import Page4 from './Components/Page4';
+import Thankyou from './Components/Thankyou';
 function App() {
   const [formdata,setData] = React.useState([{
     name:"",
@@ -115,12 +116,18 @@ function App() {
       return each;
     }) 
   }
+  function finalValidator(){
+    if(formdata[0].name==="" || formdata[0].email==="" || formdata[0].phone===""){
+      setAct(1);
+    }
+    else{
+      setAct(prev=>prev+1);
+    }
+  }
   function goBack(){
     setAct(prev=>prev-1);
   }
-  function navigator(e){
-    setAct(e);
-  }
+  
   const tier_prices=[{
     id:"Arcade",
     mo:9,
@@ -158,12 +165,13 @@ const addOns_prices=[
     <Page1 click={validator} miss={miss} change={formHandler} name_val={formdata[0].name} email_val={formdata[0].email} phone_val={formdata[0].phone} />,
     <Page2 back={goBack} click={validator} tier={tierHandler} hider={toggler} hide={hidden} active={formdata[0].tier} prices={tier_prices} />,
     <Page3 back={goBack} click={validator} change={formHandler} isCheck={formdata[0].addOns} format={hidden} prices={addOns_prices} />,
-    <Page4 back={goBack} click={validator} dat={formdata[0]}  tiers={tier_prices} active_tier={formdata[0].act_tier} adds={addOns_prices} moyr={hidden} />
+    <Page4 goBack={()=>setAct(2)} back={goBack} click={finalValidator} dat={formdata[0]}  tiers={tier_prices} active_tier={formdata[0].act_tier} adds={addOns_prices} moyr={hidden} />,
+    <Thankyou />  
   ]
   return (
     <main className="App bg-[#EEF5FF] ubu w-screen h-screen flex justify-center md:items-center">
       <section className=' bg-[#EEF5FF] md:bg-white rounded-xl flex justify-center items-end md:items-start flex-wrap md:flex-nowrap md:w-2/3 w-full h-full md:h-2/3'>
-        <Navbar active={act} click={navigator} />
+        <Navbar active={act}  />
         {arr[act-1]}
       </section>
     </main>
