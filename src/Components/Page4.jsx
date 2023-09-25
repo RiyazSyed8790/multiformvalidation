@@ -1,6 +1,8 @@
 import React from "react";
 export default function Page4(props){
     const [wanted,setWanted] = React.useState([]);
+    //const [weed,setWeed] = React.useState([]);
+    //const [total,setTotal] = React.useState("");
     React.useEffect(function(){
         //console.log(Object.values(props.adds));
         //console.log(props.dat.addOns);
@@ -9,14 +11,30 @@ export default function Page4(props){
                 if(each.val===every){
                     //console.log(Object.values(props.adds).indexOf(each));
                     setWanted((prev)=>[...prev,Object.values(props.adds).indexOf(each)]);
+                    //setWeed((prev)=>[...prev,each.mo]);
                     //wanted.push(Object.values(props.adds).indexOf(each));
                 }
                 return every
             })
             return each
         })
+        //console.log(weed);
+        // props.moyr===1?setTotal(function(){
+        //     let sum = props.tiers[props.active_tier].yr + wanted.map((each)=>{
+        //         let adds = props.adds[each].yr;
+        //         adds+=props.adds[each].yr;
+        //         return adds;
+        //      }) 
+        //     return sum
+        // }):setTotal(function(){
+        //     let sum = props.tiers[props.active_tier].mo + wanted.map((each)=>{
+        //         let adds = props.adds[each].mo;
+        //         adds+=props.adds[each].mo;
+        //         return adds;
+        //      }) 
+        //     return sum
+        // })
     },[props.adds,props.dat.addOns])
-    console.log(wanted);
     return(
         <section className=' rounded-xl  px-0 py-4 md:px-0 md:py-0 flex justify-center text-left info w-11/12 md:w-4/5 h-4/5 md:h-full z-10 bg-white'>
           <div className='flex  flex-col justify-between w-4/5 h-full md:justify-evenly '>
@@ -51,11 +69,15 @@ export default function Page4(props){
                     {
                         wanted.map((each)=>{
                             return(
-                                <h3 key={each} className='  text-sm '>+${props.adds[each].mo}/mo</h3>
-                            )
+                                <h3 key={each} className='  text-sm '>+${props.moyr===2?props.adds[each].mo:props.adds[each].yr}/{props.moyr===1?"yr":"mo"}</h3>
+                            )   
                         })
                     }
                     </div>
+                </div>
+                <div className=" total w-full flex justify-between">
+                <h3 className=' text-gray-500 text-sm'>Total (per {props.moyr===1?"year":"month"})</h3>
+                <h2 className="text-[#443EF9] text-2xl font-semibold">$Total/yr</h2>
                 </div>
             </div>
           </div>
