@@ -91,18 +91,21 @@ function App() {
   function validator(){
     formdata.map((each)=>{
       let splicer = each.email.split("");
-      if(each.name.trim()==="" && act===1)
-      {setMiss([1]);}
-      else if(each.email==="" && act===1)
-      {setMiss([2]);}
-      else if(each.phone==="" && act===1)
-      {setMiss([3]);}
-      else if(!splicer.includes("@") && act===1){
+      if((each.name.trim()==="" && act===1 ))
+      {
+        setMiss([1]);}
+      else if((each.email==="" && act===1) )
+      {
+        setMiss([2]);}
+      else if((each.phone==="" && act===1) )
+      {
+        setMiss([3]);}
+      else if((!splicer.includes("@") && act===1)){
         setMiss([0]);
         alert("Invalid email!")
       }
-      else if(isNaN(each.phone && act===1)){
-        setMiss([0]);
+      else if(isNaN(each.phone) && act===1){
+        setMiss([3]);
         alert("Invalid number!");
       }
       else{
@@ -155,7 +158,7 @@ const addOns_prices=[
     <Page1 click={validator} miss={miss} change={formHandler} name_val={formdata[0].name} email_val={formdata[0].email} phone_val={formdata[0].phone} />,
     <Page2 back={goBack} click={validator} tier={tierHandler} hider={toggler} hide={hidden} active={formdata[0].tier} prices={tier_prices} />,
     <Page3 back={goBack} click={validator} change={formHandler} isCheck={formdata[0].addOns} format={hidden} prices={addOns_prices} />,
-    <Page4 dat={formdata[0]}  tiers={tier_prices} active_tier={formdata[0].act_tier} adds={addOns_prices} moyr={hidden} />
+    <Page4 back={goBack} click={validator} dat={formdata[0]}  tiers={tier_prices} active_tier={formdata[0].act_tier} adds={addOns_prices} moyr={hidden} />
   ]
   return (
     <main className="App bg-[#EEF5FF] ubu w-screen h-screen flex justify-center md:items-center">

@@ -57,7 +57,9 @@ export default function Page4(props){
                      <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">Add-ons</span>
                 </div>
                 <div className=" addOns flex w- full bg-[#F8F9FE] justify-between ">
-                   <div className="  child:my-2 "> 
+                   {props.dat.addOns.length===0?<h2 className=" text-center w-full text-gray-400 text-base">No Add-Ons selected</h2>:
+                   ""}
+                   <div className="  child:mb-2 "> 
                     {
                         props.dat.addOns.map((each)=>{
                             return(
@@ -66,8 +68,7 @@ export default function Page4(props){
                         })
                     } 
                    </div>
-
-                   <div className="  child:my-2 "> 
+                   <div className="  child:mb-2 "> 
                     {
                         state.wanted.map((each)=>{
 
@@ -83,6 +84,10 @@ export default function Page4(props){
                 <h2 className="text-[#443EF9] text-2xl font-semibold">${props.moyr===1?(state.weed+props.tiers[props.active_tier].yr):(state.weed+props.tiers[props.active_tier].mo)}/{props.moyr===1?"yr":"mo"}</h2>
                 </div>
 
+            </div>
+            <div className=' flex justify-center my-4 md:my-0 md:justify-between'>
+              <button onClick={props.back} className=' text-[#052859] h-12 w-24 rounded-xl bg-white'>Go Back</button>  
+              <button onClick={props.click} className=' text-white h-12 w-24 rounded-xl bg-[#443EF9]'>Confirm</button>
             </div>
           </div>
         </section>
