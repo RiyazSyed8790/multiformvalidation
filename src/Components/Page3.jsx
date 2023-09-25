@@ -17,8 +17,8 @@ export default function Page3(props){
                         <h3 className=' text-gray-500 text-sm'>Access to multiplayer games</h3>
                     </div>
                     </div>
-                    <h3 style={props.format===2?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+$10/yr</h3>
-                    <h3 style={props.format===1?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+$1/mo</h3>
+                    <h3 style={props.format===2?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+${props.prices[0].yr}/yr</h3>
+                    <h3 style={props.format===1?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+${props.prices[0].mo}/mo</h3>
 
                 </div>
                 <div className="first-cond grayBord   flex items-center px-1 py-3 md:py-4 md:px-4  justify-between ">
@@ -29,8 +29,8 @@ export default function Page3(props){
                         <h3 className=' text-gray-500 text-sm'>Extra 1TB of cloud save</h3>
                     </div>
                     </div>
-                    <h3 style={props.format===2?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+$20/yr</h3>
-                    <h3 style={props.format===1?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+$2/mo</h3>
+                    <h3 style={props.format===2?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+${props.prices[1].yr}/yr</h3>
+                    <h3 style={props.format===1?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+${props.prices[1].mo}/mo</h3>
                 </div>
                 <div className="first-cond grayBord  flex items-center px-1 py-3 md:py-4 md:px-4  justify-between ">
                     <div className="flex  items-center child:mx-1 md:child:mx-2 ">
@@ -40,8 +40,8 @@ export default function Page3(props){
                         <h3 className=' text-gray-500 text-sm'>Custom theme on your profile</h3>
                     </div>
                     </div>
-                    <h3 style={props.format===2?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+$20/yr</h3>
-                    <h3 style={props.format===1?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+$2/mo</h3>
+                    <h3 style={props.format===2?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+${props.prices[2].yr}/yr</h3>
+                    <h3 style={props.format===1?{display:"none"}:{display:"block"}} className=' text-[#443EF9] text-sm'>+${props.prices[2].mo}/mo</h3>
                 </div>
             </div>
             <div className=' flex justify-center my-4 md:my-0 md:justify-between'>

@@ -17,30 +17,30 @@ export default function Page2(props){
             <h3 className=' text-gray-500 text-base'>You have the option of monthly or yearly billing.</h3>
             </div>
             <div className="tiers-section flex flex-wrap md:flex-nowrap w-full child:my-2 md:child:mr-2 justify-between">
-              <div onClick={()=>props.tier(1)} style={props.active===1?{borderColor:"blue"}:{}} className="tier-card md:w-1/3 w-full cursor-pointer md:h-full grayBord flex md:flex-col px-4 py-4 justify-start items-center md:items-start  md:justify-between">
+              <div onClick={()=>props.tier("Arcade")} style={props.active==="Arcade"?{borderColor:"blue"}:{}} className="tier-card md:w-1/3 w-full cursor-pointer md:h-full grayBord flex md:flex-col px-4 py-4 justify-start items-center md:items-start  md:justify-between">
                 <Arcade />
                 <div className=" mx-4 md:my-2 md:mx-0">
                   <h2 className=" text-[#012257] font-semibold text-base">Arcade</h2>
-                  <h3 style={props.hide===1?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>$9/month</h3>
-                  <h3 style={props.hide===2?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>$90/yr</h3>
+                  <h3 style={props.hide===1?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>${props.prices[0].mo}/month</h3>
+                  <h3 style={props.hide===2?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>${props.prices[0].yr}/yr</h3>
                   <h3 style={props.hide===2?{display:"none"}:{display:"block"}} className=' text-[#012257] text-sm font-thin'>2 months free</h3>
                 </div>
               </div>
-              <div onClick={()=>props.tier(2)} style={props.active===2?{borderColor:"blue"}:{}} className="tier-card md:w-1/3 w-full cursor-pointer md:h-full grayBord flex md:flex-col px-4 py-4 justify-start items-center md:items-start  md:justify-between">
+              <div onClick={()=>props.tier("Advanced")} style={props.active==="Advanced"?{borderColor:"blue"}:{}} className="tier-card md:w-1/3 w-full cursor-pointer md:h-full grayBord flex md:flex-col px-4 py-4 justify-start items-center md:items-start  md:justify-between">
               <Advanced />
               <div className=" mx-4 md:my-2 md:mx-0">
                   <h2 className=" text-[#012257] font-semibold text-base">Advanced</h2>
-                  <h3 style={props.hide===1?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>$12/month</h3>
-                  <h3 style={props.hide===2?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>$120/yr</h3>
+                  <h3 style={props.hide===1?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>${props.prices[1].mo}/month</h3>
+                  <h3 style={props.hide===2?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>${props.prices[1].yr}/yr</h3>
                   <h3 style={props.hide===2?{display:"none"}:{display:"block"}} className=' text-[#012257] text-sm font-thin'>2 months free</h3>
                 </div>
               </div>
-              <div onClick={()=>props.tier(3)} style={props.active===3?{borderColor:"blue"}:{}} className="tier-card md:w-1/3 w-full cursor-pointer md:h-full grayBord flex md:flex-col px-4 py-4 justify-start items-center md:items-start  md:justify-between">
+              <div onClick={()=>props.tier("Pro")} style={props.active==="Pro"?{borderColor:"blue"}:{}} className="tier-card md:w-1/3 w-full cursor-pointer md:h-full grayBord flex md:flex-col px-4 py-4 justify-start items-center md:items-start  md:justify-between">
               <Pro />
               <div className=" mx-4 md:my-2 md:mx-0">
                   <h2 className=" text-[#012257] font-semibold text-base">Pro</h2>
-                  <h3 style={props.hide===1?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>$15/month</h3>
-                  <h3 style={props.hide===2?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>$150/yr</h3>
+                  <h3 style={props.hide===1?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>${props.prices[2].mo}/month</h3>
+                  <h3 style={props.hide===2?{display:"none"}:{display:"block"}} className=' text-gray-500 text-sm'>${props.prices[2].yr}/yr</h3>
                   <h3 style={props.hide===2?{display:"none"}:{display:"block"}} className=' text-[#012257] text-sm font-thin'>2 months free</h3>
                 </div>
               </div>
