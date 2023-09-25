@@ -1,40 +1,42 @@
 import React from "react";
 export default function Page4(props){
-    const [wanted,setWanted] = React.useState([]);
-    //const [weed,setWeed] = React.useState([]);
-    //const [total,setTotal] = React.useState("");
+    const reducer = (state, action) => {
+        switch (action.type) {
+          case 'ADD_WANTED':
+            return {
+              ...state,
+              wanted: [...state.wanted, action.index],
+              weed: (parseInt(state.weed)+parseInt(action.mo)),
+            };
+          case 'ADD_WANTED_YEARLY': 
+            return{
+                ...state,
+              wanted: [...state.wanted, action.index],
+              weed: (parseInt(state.weed)+parseInt(action.yr)),
+            }
+           
+          default:
+            return state;
+        }
+      };
+      const initialState = {
+        wanted: [],
+        weed: 0,
+      };
+      const [state, dispatch] = React.useReducer(reducer, initialState); 
     React.useEffect(function(){
-        //console.log(Object.values(props.adds));
-        //console.log(props.dat.addOns);
-        Object.values(props.adds).map((each)=>{
-            props.dat.addOns.map((every)=>{
-                if(each.val===every){
-                    //console.log(Object.values(props.adds).indexOf(each));
-                    setWanted((prev)=>[...prev,Object.values(props.adds).indexOf(each)]);
-                    //setWeed((prev)=>[...prev,each.mo]);
-                    //wanted.push(Object.values(props.adds).indexOf(each));
-                }
-                return every
-            })
-            return each
-        })
-        //console.log(weed);
-        // props.moyr===1?setTotal(function(){
-        //     let sum = props.tiers[props.active_tier].yr + wanted.map((each)=>{
-        //         let adds = props.adds[each].yr;
-        //         adds+=props.adds[each].yr;
-        //         return adds;
-        //      }) 
-        //     return sum
-        // }):setTotal(function(){
-        //     let sum = props.tiers[props.active_tier].mo + wanted.map((each)=>{
-        //         let adds = props.adds[each].mo;
-        //         adds+=props.adds[each].mo;
-        //         return adds;
-        //      }) 
-        //     return sum
-        // })
-    },[props.adds,props.dat.addOns])
+        Object.values(props.adds).forEach((each, index) => {
+            props.dat.addOns.forEach((every) => {
+              if (each.val === every) {
+                // Dispatch an action to update state
+                if(props.moyr===2)
+                dispatch({ type: 'ADD_WANTED', index, mo: each.mo });
+                else
+                dispatch({ type: 'ADD_WANTED_YEARLY', index, yr: each.yr });
+              }
+            });
+          });
+              },[props.adds,props.dat.addOns,props.moyr])
     return(
         <section className=' rounded-xl  px-0 py-4 md:px-0 md:py-0 flex justify-center text-left info w-11/12 md:w-4/5 h-4/5 md:h-full z-10 bg-white'>
           <div className='flex  flex-col justify-between w-4/5 h-full md:justify-evenly '>
@@ -55,7 +57,7 @@ export default function Page4(props){
                      <span className="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2 dark:text-white dark:bg-gray-900">Add-ons</span>
                 </div>
                 <div className=" addOns flex w- full bg-[#F8F9FE] justify-between ">
-                   <div className=" child:mb-2"> 
+                   <div className="  child:my-2 "> 
                     {
                         props.dat.addOns.map((each)=>{
                             return(
@@ -65,9 +67,10 @@ export default function Page4(props){
                     } 
                    </div>
 
-                   <div className=" child:my-2"> 
+                   <div className="  child:my-2 "> 
                     {
-                        wanted.map((each)=>{
+                        state.wanted.map((each)=>{
+
                             return(
                                 <h3 key={each} className='  text-sm '>+${props.moyr===2?props.adds[each].mo:props.adds[each].yr}/{props.moyr===1?"yr":"mo"}</h3>
                             )   
@@ -75,10 +78,11 @@ export default function Page4(props){
                     }
                     </div>
                 </div>
-                <div className=" total w-full flex justify-between">
+                <div className=" total w-full flex items-center justify-between">
                 <h3 className=' text-gray-500 text-sm'>Total (per {props.moyr===1?"year":"month"})</h3>
-                <h2 className="text-[#443EF9] text-2xl font-semibold">$Total/yr</h2>
+                <h2 className="text-[#443EF9] text-2xl font-semibold">${props.moyr===1?(state.weed+props.tiers[props.active_tier].yr):(state.weed+props.tiers[props.active_tier].mo)}/{props.moyr===1?"yr":"mo"}</h2>
                 </div>
+
             </div>
           </div>
         </section>
